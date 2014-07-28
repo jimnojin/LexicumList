@@ -1,86 +1,30 @@
 <!doctype HTML>
 <html>
 	<head>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<script>
-			var LexicumList
-		
-		
-			function LexicumList(config) {
-				this.config = config;	
-				this.data = [];
-				this.root = document.querySelector(this.config.root);
-			};
-			LexicumList.prototype.init = function() {
-				this.getJSON(this.config.url, function(data) {
-					this.data = data;	
-					this.populateList();
-					this.createLanguageSwitch();
-				});
-			};
-			
-			LexicumList.prototype.getJSON = function (url, successHandler, errorHandler) {
-				var xhr = typeof XMLHttpRequest != 'undefined' ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-				xhr.open('get', url, true);
-				xhr.onreadystatechange = function() {
-					var status;
-					var data;
-					if (xhr.readyState == 4) { 
-						status = xhr.status;
-						if (status == 200) {
-							data = JSON.parse(xhr.responseText);
-							successHandler && successHandler(data);
-						} else {
-							errorHandler && errorHandler(status);
-						}
-					}
-				};
-				xhr.send();
-			};
-				
-			LexicumList.prototype.populateList = function () {							
-				var list = document.createElement('ul');
-				list.classList.add('list-group');
-				list.id = 'data-list';
-				this.data.forEach(function(e) {
-					var li = document.createElement('li');
-					li.innerHTML = '<b>' + e.Language + '</b>  ' + e.Word;
-					li.classList.add('list-group-item');
-					list.appendChild(li);
-				});
-				
-				this.root.appendChild(list);
-			};
-			LexicumList.prototype.createLanguageSwitch = function() {
-				var langList = [];
-				this.data.forEach(function(e) {
-					if (langList.indexOf(e.Language) === -1)
-						langList.push(e.Language);
-				});
-				console.log(langList);
-			};
-			
-			window.onload = function() {
-				var lexList = new LexicumList({url: 'data.json', root: '#root'});
-				lexList.init();
-			};			
-		</script>
-		<style>
-		
-		</style>
+		<link rel="stylesheet" href="lexicum.css">		
+		<script src="lexicum.js"></script>		
 	</head>
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12 col-lg-4">
-					<div id="root">
-						<div class="btn-group">
-							<button type="button" class="btn btn-default">Left</button>
-							<button type="button" class="btn btn-default">Middle</button>
-							<button type="button" class="btn btn-default">Right</button>
-						</div>
+				<div class="col-xs-12 col-sm-12">
+					<div class="col-xs-10 col-sm-11 no-padding">
+						<select class="form-control" id="language"></select>
 					</div>
-				</div>			
+					<div class="col-xs-2 col-sm-1 col-md-1 no-padding text-right" id="word-count"></div>
+								
+					<hr/>					
+				</div>
+								
+				<div class="col-xs-12">
+					<ul class="list-group" id="data-list">
+						
+					</ul>
+				</div>				
 			</div>
 	</body>
 </html>
+
+

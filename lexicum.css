@@ -1,0 +1,73 @@
+.list-group > li > span:after {
+	font-family: 'Glyphicons Halflings';  
+	content: "\e080";
+	float: right;
+	color: grey; 
+}
+.list-group > li.collapsed > span:after {
+	content: "\e114";  
+}
+
+.panel-body {
+	padding: 0px;
+}
+
+body > .container {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+/***/
+.container {
+	max-width: 600px;
+}
+hr {
+	float: left;
+	width: 100%;
+}
+.no-padding {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.badge {
+	padding: 11px 10px;
+}
+
+.list-group > li {
+	cursor: pointer;
+}
+.list-group > li .details {
+	display: none;
+}
+.list-group > li.collapsed .details {
+	display: block;	
+}
+.list-group > li.collapsed ,
+.list-group > li.collapsed .details .panel{
+	background: #f7f7f9;
+}
+
+.details {
+	border-top: 1px solid #ccc;
+	padding-top: 10px;
+	margin-top: 10px;
+}
+			
+.details .meaning .panel-title,
+.details .definition .panel-title,
+.details .examples .panel-title{
+	font-weight: bold;
+}
+
+.details ol > li {
+	font-style: italic;
+}
+.details .panel {
+	margin-bottom: 5px;
+}
+.details span.info {
+	font-style: italic;
+	font-size: 12px;
+	width: 100%;
+	text-align: right;
+	float: left;
+}
