@@ -15,11 +15,9 @@
 body > .container {
 	padding-top: 15px;
 	padding-bottom: 15px;
-}
-/***/
-.container {
 	max-width: 600px;
 }
+/***/
 hr {
 	float: left;
 	width: 100%;

@@ -10,7 +10,6 @@ var LexicumList = function(config) {
 	self.data = [];
 	self.list = null;
 	
-	
 	self.init = function() {
 		for(var i in config) {
 			if (self.config.hasOwnProperty(i)) 
@@ -28,6 +27,7 @@ var LexicumList = function(config) {
 	self.getJSON = function (url, successHandler, errorHandler) {
 		var xhr = typeof XMLHttpRequest != 'undefined' ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 		xhr.open('get', url, true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 		xhr.onreadystatechange = function() {
 			var status;
 			var data;
@@ -59,7 +59,7 @@ var LexicumList = function(config) {
 			langSelect = $('#language');
 			
 		self.data.forEach(function(e) {
-			langList[e.Language] = langList.hasOwnProperty(e.Language) ? (langList[e.Language] + 1) : 0;				
+			langList[e.Language] = langList.hasOwnProperty(e.Language) ? (langList[e.Language] + 1) : 1;				
 		});
 		for (var lang in langList) {
 			var langOpt = document.createElement('option');
@@ -144,11 +144,4 @@ var LexicumList = function(config) {
 	}
 	
 	self.init();
-};		
-
-window.onload = function() {
-	var list = new LexicumList({
-		url: 'data.json', 
-		list: '#data-list'
-	});
-};	
+};			
